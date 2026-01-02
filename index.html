@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance AI Platform Wireframe</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        #main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+        .chat-warning {
+            background-color: #fff3cd;
+            color: #664d03;
+            border: 1px solid #ffecb5;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: .25rem;
+        }
+        .content-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Insurance AI Platform</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Project Selector -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="projectDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Project: <span id="currentProjectName">Default Project</span> <span class="badge bg-primary" id="currentProjectLOB">LOB: Life</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="projectDropdown">
+                            <li><a class="dropdown-item project-selector" data-project-name="Project Alpha" data-project-lob="Auto" href="#">Project Alpha (Auto)</a></li>
+                            <li><a class="dropdown-item project-selector" data-project-name="Project Beta" data-project-lob="Property" href="#">Project Beta (Property)</a></li>
+                            <li><a class="dropdown-item project-selector" data-project-name="Default Project" data-project-lob="Life" href="#">Default Project (Life)</a></li>
+                        </ul>
+                    </li>
+                    <!-- Environment Badge -->
+                    <li class="nav-item">
+                        <span class="nav-link"><span class="badge bg-success">Environment: Dev</span></span>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <!-- Role Simulator -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="roleDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Role: <span id="currentRole">Claim Adjuster</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="roleDropdown">
+                            <li><a class="dropdown-item role-selector" data-role="AI / Platform Engineer" href="#">AI / Platform Engineer</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="System Administrator" href="#">System Administrator</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Security Engineer" href="#">Security Engineer</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Platform Admin" href="#">Platform Admin</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Data Steward / Knowledge Manager" href="#">Data Steward / Knowledge Manager</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Compliance Officer" href="#">Compliance Officer</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Audit Officer" href="#">Audit Officer</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Claim Adjuster" href="#">Claim Adjuster</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Senior Claim Adjuster / Supervisor" href="#">Senior Claim Adjuster / Supervisor</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Underwriter" href="#">Underwriter</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Broker / Agent" href="#">Broker / Agent</a></li>
+                            <li><a class="dropdown-item role-selector" data-role="Customer Support / Call Center" href="#">Customer Support / Call Center</a></li>
+                        </ul>
+                    </li>
+                    <!-- Logged-in User -->
+                    <li class="nav-item">
+                        <span class="nav-link">Logged in as: <span class="text-white-50">mock.user@example.com</span></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex">
+        <!-- Left Sidebar -->
+        <div class="sidebar" id="left-sidebar">
+            <ul class="nav flex-column">
+                <!-- AI / Platform Engineer -->
+                <li class="nav-item sidebar-item AI-Platform-Engineer">
+                    <a class="nav-link active" aria-current="page" href="#dashboard-engineer">Dashboard</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer">
+                    <a class="nav-link" href="#create-project">Create Project</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer">
+                    <a class="nav-link" href="#project-configuration">Project Configuration</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer ps-3">
+                    <a class="nav-link" href="#lob-selection">LOB Selection</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer ps-3">
+                    <a class="nav-link" href="#rag-configuration">RAG Configuration</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer ps-3">
+                    <a class="nav-link" href="#vectordb-manager">VectorDB & Index Manager</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer ps-3">
+                    <a class="nav-link" href="#api-secret-configuration">API & Secret Configuration</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer">
+                    <a class="nav-link" href="#user-management-maker">User Management</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer">
+                    <a class="nav-link" href="#deployment-health">Deployment & Health</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer">
+                    <a class="nav-link" href="#incoming-tickets">Incoming Tickets</a>
+                </li>
+                <li class="nav-item sidebar-item AI-Platform-Engineer chat-link">
+                    <a class="nav-link" href="#test-chat">Test Chat</a>
+                </li>
+
+                <!-- System Administrator -->
+                <li class="nav-item sidebar-item System-Administrator">
+                    <a class="nav-link" href="#access-approval-queue">Access Approval Queue</a>
+                </li>
+                <li class="nav-item sidebar-item System-Administrator">
+                    <a class="nav-link" href="#user-activation">User Activation / Deactivation</a>
+                </li>
+                <li class="nav-item sidebar-item System-Administrator">
+                    <a class="nav-link" href="#identity-provider-approval">Identity Provider Approval</a>
+                </li>
+                <li class="nav-item sidebar-item System-Administrator chat-link">
+                    <a class="nav-link" href="#test-chat">Test Chat</a>
+                </li>
+                <li class="nav-item sidebar-item System-Administrator">
+                    <a class="nav-link" href="#audit-logs">Audit Logs (Read-only)</a>
+                </li>
+
+                <!-- Security Engineer -->
+                <li class="nav-item sidebar-item Security-Engineer">
+                    <a class="nav-link" href="#identity-provider-config">Identity Provider Configuration</a>
+                </li>
+                <li class="nav-item sidebar-item Security-Engineer">
+                    <a class="nav-link" href="#token-claims">Token Claims & RBAC/ABAC View</a>
+                </li>
+                <li class="nav-item sidebar-item Security-Engineer">
+                    <a class="nav-link" href="#security-logs">Security Logs</a>
+                </li>
+                <li class="nav-item sidebar-item Security-Engineer chat-link">
+                    <a class="nav-link" href="#readonly-test-chat">Read-only Test Chat</a>
+                </li>
+
+                <!-- Platform Admin -->
+                <li class="nav-item sidebar-item Platform-Admin">
+                    <a class="nav-link" href="#aks-deployment-status">AKS Deployment Status</a>
+                </li>
+                <li class="nav-item sidebar-item Platform-Admin">
+                    <a class="nav-link" href="#vectordb-health">VectorDB Health</a>
+                </li>
+                <li class="nav-item sidebar-item Platform-Admin">
+                    <a class="nav-link" href="#failed-ingestion-jobs">Failed Ingestion Jobs</a>
+                </li>
+                <li class="nav-item sidebar-item Platform-Admin chat-link">
+                    <a class="nav-link" href="#test-chat">Test Chat</a>
+                </li>
+
+                <!-- Data Steward / Knowledge Manager -->
+                <li class="nav-item sidebar-item Data-Steward-Knowledge-Manager">
+                    <a class="nav-link" href="#document-library">Document Library</a>
+                </li>
+                <li class="nav-item sidebar-item Data-Steward-Knowledge-Manager ps-3">
+                    <a class="nav-link" href="#upload-enterprise-docs">Upload Enterprise Documents</a>
+                </li>
+                <li class="nav-item sidebar-item Data-Steward-Knowledge-Manager ps-3">
+                    <a class="nav-link" href="#metadata-tagging">Metadata Tagging</a>
+                </li>
+                <li class="nav-item sidebar-item Data-Steward-Knowledge-Manager ps-3">
+                    <a class="nav-link" href="#versioning-expiry">Versioning & Expiry</a>
+                </li>
+
+                <!-- Claim Adjuster -->
+                <li class="nav-item sidebar-item Claim-Adjuster">
+                    <a class="nav-link" href="#claims-workspace">Claims Workspace</a>
+                </li>
+                <li class="nav-item sidebar-item Claim-Adjuster ps-3">
+                    <a class="nav-link" href="#claim-ticket-selector">Claim / Ticket Selector</a>
+                </li>
+                <li class="nav-item sidebar-item Claim-Adjuster ps-3">
+                    <a class="nav-link" href="#upload-claim-documents">Upload Claim Documents</a>
+                </li>
+                <li class="nav-item sidebar-item Claim-Adjuster ps-3">
+                    <a class="nav-link" href="#ingestion-status">Ingestion Status</a>
+                </li>
+                <li class="nav-item sidebar-item Claim-Adjuster chat-link">
+                    <a class="nav-link" href="#business-chat">Chat (Business Mode)</a>
+                </li>
+                <li class="nav-item sidebar-item Claim-Adjuster">
+                    <a class="nav-link" href="#raise-issue">Raise Issue / Log Ticket</a>
+                </li>
+
+                <!-- Senior Claim Adjuster / Supervisor -->
+                <li class="nav-item sidebar-item Senior-Claim-Adjuster-Supervisor">
+                    <a class="nav-link" href="#multi-claim-dashboard">Multi-Claim Dashboard</a>
+                </li>
+                <li class="nav-item sidebar-item Senior-Claim-Adjuster-Supervisor">
+                    <a class="nav-link" href="#approvals">Approvals</a>
+                </li>
+                <li class="nav-item sidebar-item Senior-Claim-Adjuster-Supervisor">
+                    <a class="nav-link" href="#escalations">Escalations</a>
+                </li>
+                <li class="nav-item sidebar-item Senior-Claim-Adjuster-Supervisor chat-link">
+                    <a class="nav-link" href="#business-chat">Chat (Business Mode)</a>
+                </li>
+                <li class="nav-item sidebar-item Senior-Claim-Adjuster-Supervisor">
+                    <a class="nav-link" href="#issue-ticket-review">Issue & Ticket Review</a>
+                </li>
+
+                <!-- Underwriter -->
+                <li class="nav-item sidebar-item Underwriter">
+                    <a class="nav-link" href="#risk-analytics">Risk Analytics</a>
+                </li>
+                <li class="nav-item sidebar-item Underwriter">
+                    <a class="nav-link" href="#loss-history">Loss History</a>
+                </li>
+                <li class="nav-item sidebar-item Underwriter">
+                    <a class="nav-link" href="#policy-summaries">Policy Summaries</a>
+                </li>
+
+                <!-- Compliance Officer -->
+                <li class="nav-item sidebar-item Compliance-Officer">
+                    <a class="nav-link" href="#access-history">Access History</a>
+                </li>
+                <li class="nav-item sidebar-item Compliance-Officer">
+                    <a class="nav-link" href="#approval-trails">Approval Trails</a>
+                </li>
+                <li class="nav-item sidebar-item Compliance-Officer">
+                    <a class="nav-link" href="#ai-decision-logs">AI Decision Logs</a>
+                </li>
+
+                <!-- Audit Officer -->
+                <li class="nav-item sidebar-item Audit-Officer">
+                    <a class="nav-link" href="#audit-reports">Audit Reports</a>
+                </li>
+                <li class="nav-item sidebar-item Audit-Officer">
+                    <a class="nav-link" href="#logs-export">Logs Export</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="main-content">
+            <div class="chat-warning" id="test-chat-warning" style="display: none;">
+                <strong>Warning:</strong> You are in Test/Diagnostic Chat Mode. This mode is for platform testing and troubleshooting.
+            </div>
+            <div class="chat-warning" id="readonly-test-chat-warning" style="display: none;">
+                <strong>Warning:</strong> You are in Read-only Test Chat Mode. This mode is for viewing only.
+            </div>
+
+            <!-- Content Sections (initially hidden) -->
+            <div id="dashboard-engineer" class="content-section">
+                <h2>AI / Platform Engineer Dashboard</h2>
+                <div class="row">
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>System Health</h5><p class="card-text text-success">All Systems Operational</p></div></div></div>
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>Active Deployments</h5><p class="card-text">3 Production, 2 QA, 1 Dev</p></div></div></div>
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>Open Tickets</h5><p class="card-text">5 critical, 12 high</p></div></div></div>
+                </div>
+                <h3>Recent Activities</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Deployment to Prod environment successful for Project Alpha.</li>
+                    <li class="list-group-item">New RAG configuration deployed for Project Beta.</li>
+                    <li class="list-group-item">User 'john.doe@example.com' submitted for approval.</li>
+                </ul>
+            </div>
+
+            <div id="create-project" class="content-section">
+                <h2>Create Project</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="projectName" class="form-label">Project Name</label>
+                        <input type="text" class="form-control" id="projectName" placeholder="e.g., Q1-Claims-Automation">
+                    </div>
+                    <div class="mb-3">
+                        <label for="environment" class="form-label">Environment</label>
+                        <select class="form-select" id="environment">
+                            <option>Dev</option>
+                            <option>QA</option>
+                            <option>Prod</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lob" class="form-label">Line of Business</label>
+                        <select class="form-select" id="lob">
+                            <option>Life</option>
+                            <option>Auto</option>
+                            <option>Property</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lobMetadata" class="form-label">Auto-loaded LOB Metadata (Read-only)</label>
+                        <textarea class="form-control" id="lobMetadata" rows="3" readonly>Metadata for selected LOB will appear here.</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Project</button>
+                </form>
+            </div>
+
+            <div id="project-configuration" class="content-section">
+                <h2>Project Configuration</h2>
+                <h3>Configured Projects</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>LOB</th>
+                            <th>Environment</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Project Alpha</td>
+                            <td>Auto</td>
+                            <td>Prod</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td><button class="btn btn-sm btn-info">View Config</button></td>
+                        </tr>
+                        <tr>
+                            <td>Project Beta</td>
+                            <td>Property</td>
+                            <td>QA</td>
+                            <td><span class="badge bg-warning">Under Development</span></td>
+                            <td><button class="btn btn-sm btn-info">View Config</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="lob-selection" class="content-section">
+                <h2>LOB Selection</h2>
+                <p>Select and configure Lines of Business.</p>
+            </div>
+
+            <div id="rag-configuration" class="content-section">
+                <h2>RAG & VectorDB Configuration</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="vectorDBType" class="form-label">VectorDB Type</label>
+                        <select class="form-select" id="vectorDBType">
+                            <option>Pinecone</option>
+                            <option>Weaviate</option>
+                            <option>Milvus</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="indexName" class="form-label">Index Name</label>
+                        <input type="text" class="form-control" id="indexName" placeholder="e.g., claims-index-v1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="chunkSize" class="form-label">Chunk Size / Overlap</label>
+                        <input type="text" class="form-control" id="chunkSize" placeholder="e.g., 1024 / 200">
+                    </div>
+                    <div class="mb-3">
+                        <label for="retrievalStrategy" class="form-label">Retrieval Strategy</label>
+                        <select class="form-select" id="retrievalStrategy">
+                            <option>MMR</option>
+                            <option>Hybrid</option>
+                            <option>Dense</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Configuration</button>
+                </form>
+            </div>
+
+            <div id="vectordb-manager" class="content-section">
+                <h2>VectorDB & Index Manager</h2>
+                <h3>Vector Databases</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>DB Name</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Indices</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ClaimVectorDB-Prod</td>
+                            <td>Pinecone</td>
+                            <td><span class="badge bg-success">Online</span></td>
+                            <td>claims-index-v1, policies-index-v2</td>
+                            <td><button class="btn btn-sm btn-info">Manage Indices</button></td>
+                        </tr>
+                        <tr>
+                            <td>PolicyVectorDB-QA</td>
+                            <td>Weaviate</td>
+                            <td><span class="badge bg-warning">Degraded</span></td>
+                            <td>policy-qa-index</td>
+                            <td><button class="btn btn-sm btn-info">Manage Indices</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="api-secret-configuration" class="content-section">
+                <h2>API Configuration</h2>
+                <form class="mb-4">
+                    <h4 class="mb-3">Add New API</h4>
+                    <div class="mb-3">
+                        <label for="apiName" class="form-label">API Name</label>
+                        <input type="text" class="form-control" id="apiName" placeholder="e.g., ClaimsStatusAPI">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apiEndpoint" class="form-label">Endpoint</label>
+                        <input type="url" class="form-control" id="apiEndpoint" placeholder="https://api.example.com/claims">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apiMethod" class="form-label">Method</label>
+                        <select class="form-select" id="apiMethod">
+                            <option>GET</option>
+                            <option>POST</option>
+                            <option>PUT</option>
+                            <option>DELETE</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="authType" class="form-label">Auth Type</label>
+                        <select class="form-select" id="authType">
+                            <option>API Key</option>
+                            <option>OAuth2</option>
+                            <option>Basic Auth</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apiSecret" class="form-label">Secret (masked)</label>
+                        <input type="password" class="form-control" id="apiSecret" value="••••••••••••" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="allowedRoles" class="form-label">Allowed Roles</label>
+                        <input type="text" class="form-control" id="allowedRoles" placeholder="Comma separated roles, e.g., Claim Adjuster, Supervisor">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save API Configuration</button>
+                </form>
+
+                <h3>Configured APIs</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>API Name</th>
+                            <th>Endpoint</th>
+                            <th>Method</th>
+                            <th>Auth Type</th>
+                            <th>Allowed Roles</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ClaimsStatusAPI</td>
+                            <td>https://api.example.com/claims</td>
+                            <td>GET</td>
+                            <td>API Key</td>
+                            <td>Claim Adjuster, Supervisor</td>
+                            <td><button class="btn btn-sm btn-danger">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>PolicyInfoAPI</td>
+                            <td>https://api.example.com/policies</td>
+                            <td>POST</td>
+                            <td>OAuth2</td>
+                            <td>Underwriter</td>
+                            <td><button class="btn btn-sm btn-danger">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="user-management-maker" class="content-section">
+                <h2>User Management (Maker)</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label">User Email</label>
+                        <input type="email" class="form-control" id="userEmail" placeholder="user@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="userRole" class="form-label">Role</label>
+                        <select class="form-select" id="userRole">
+                            <option>Claim Adjuster</option>
+                            <option>Underwriter</option>
+                            <option>AI / Platform Engineer</option>
+                            <option>System Administrator</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="authProvider" class="form-label">Auth Provider</label>
+                        <select class="form-select" id="authProvider">
+                            <option>AD</option>
+                            <option>Okta</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="projectScope" class="form-label">Project Scope</label>
+                        <input type="text" class="form-control" id="projectScope" placeholder="e.g., Project Alpha">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="submitForApproval">Submit for Approval</button>
+                    <div class="mt-3">
+                        Status: <span id="userApprovalStatus" class="badge bg-warning">Pending</span>
+                    </div>
+                </form>
+            </div>
+
+            <div id="deployment-health" class="content-section">
+                <h2>Deployment & Health</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>AKS Deployment Status</h3>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item">Project Alpha - Prod: <span class="badge bg-success">Deployed v1.2</span></li>
+                            <li class="list-group-item">Project Beta - QA: <span class="badge bg-warning">Deploying v1.1</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Service Health</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item">RAG Service: <span class="badge bg-success">Healthy</span></li>
+                            <li class="list-group-item">Ingestion Service: <span class="badge bg-danger">Unhealthy (High Latency)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="incoming-tickets" class="content-section">
+                <h2>Incoming Tickets (From Business Users)</h2>
+                <div id="ticket-list"></div>
+            </div>
+
+            <div id="test-chat" class="content-section chat-section">
+                <h2>Test / Diagnostic Chat</h2>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="5" readonly>Welcome to the Test Chat. This mode is for diagnostic purposes. Your input will not affect live business data.
+AI: Hello, how can I assist you with testing?
+You: What is the current model version for Project Alpha?
+AI: Project Alpha is currently running model v2.1.3.</textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Type your message here..." aria-label="Chat input">
+                    <button class="btn btn-outline-secondary" type="button">Send</button>
+                </div>
+            </div>
+
+            <div id="access-approval-queue" class="content-section">
+                <h2>Access Approval Queue</h2>
+                <table class="table" id="approval-requests-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">User Email</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Project</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Mock approval requests will be added here by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="user-activation" class="content-section">
+                <h2>User Activation / Deactivation</h2>
+                <h3>Existing Users</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Project Scope</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>alice.adjuster@example.com</td>
+                            <td>Claim Adjuster</td>
+                            <td>Project Alpha</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td><button class="btn btn-sm btn-warning">Deactivate</button></td>
+                        </tr>
+                        <tr>
+                            <td>bob.underwriter@example.com</td>
+                            <td>Underwriter</td>
+                            <td>Project Beta</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td><button class="btn btn-sm btn-warning">Deactivate</button></td>
+                        </tr>
+                        <tr>
+                            <td>charlie.broker@example.com</td>
+                            <td>Broker / Agent</td>
+                            <td>All</td>
+                            <td><span class="badge bg-danger">Inactive</span></td>
+                            <td><button class="btn btn-sm btn-success">Activate</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="identity-provider-approval" class="content-section">
+                <h2>Identity Provider Approval (AD / Okta)</h2>
+                <h3>Pending IDP Configurations</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>IDP Name</th>
+                            <th>Type</th>
+                            <th>Submitted By</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AcmeCorp-AD</td>
+                            <td>Active Directory</td>
+                            <td>security.admin@example.com</td>
+                            <td><span class="badge bg-warning">Pending Review</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="audit-logs" class="content-section">
+                <h2>Audit Logs (Read-only)</h2>
+                <h3>Recent System Activities</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026-01-03 03:00:10</td>
+                            <td>sys.admin@example.com</td>
+                            <td>User Role Change</td>
+                            <td>'jane.doe@example.com' role updated to 'Claim Adjuster'</td>
+                        </tr>
+                        <tr>
+                            <td>2026-01-03 02:55:22</td>
+                            <td>ai.engineer@example.com</td>
+                            <td>RAG Config Update</td>
+                            <td>Project Alpha RAG config updated.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="identity-provider-config" class="content-section">
+                <h2>Identity Provider Configuration</h2>
+                <p>Configure and manage identity providers for user authentication.</p>
+                <form>
+                    <div class="mb-3">
+                        <label for="idpName" class="form-label">IDP Name</label>
+                        <input type="text" class="form-control" id="idpName" placeholder="e.g., Company-Okta">
+                    </div>
+                    <div class="mb-3">
+                        <label for="idpType" class="form-label">IDP Type</label>
+                        <select class="form-select" id="idpType">
+                            <option>Active Directory</option>
+                            <option>Okta</option>
+                            <option>Azure AD</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="metadataUrl" class="form-label">Metadata URL</label>
+                        <input type="url" class="form-control" id="metadataUrl" placeholder="https://idp.example.com/metadata.xml">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save IDP Configuration</button>
+                </form>
+            </div>
+
+            <div id="token-claims" class="content-section">
+                <h2>Token Claims & RBAC/ABAC View</h2>
+                <p>Simulated view of a user's JWT claims and effective permissions.</p>
+                <div class="card">
+                    <div class="card-header">JWT Token Claims for mock.user@example.com</div>
+                    <div class="card-body">
+                        <pre><code>{
+    "sub": "mock.user@example.com",
+    "roles": [
+        "Claim Adjuster",
+        "User"
+    ],
+    "project_access": [
+        "Project Alpha",
+        "Project Beta"
+    ],
+    "lob_access": [
+        "Life",
+        "Auto"
+    ],
+    "exp": 1704201600
+}</code></pre>
+                    </div>
+                </div>
+                <h4 class="mt-4">Effective Permissions for Current Role (<span id="currentRolePermissions">Claim Adjuster</span>)</h4>
+                <ul>
+                    <li>Access Claims Workspace</li>
+                    <li>Upload Ticket-Scoped Documents</li>
+                    <li>Access Business Chat</li>
+                    <li>Raise Issues</li>
+                    <li>(No access to Platform Configuration)</li>
+                </ul>
+            </div>
+
+            <div id="security-logs" class="content-section">
+                <h2>Security Logs</h2>
+                <h3>Recent Security Events</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Event Type</th>
+                            <th>User/Source</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026-01-03 03:05:00</td>
+                            <td>Login Success</td>
+                            <td>mock.user@example.com</td>
+                            <td>Login from IP: 192.168.1.100</td>
+                        </tr>
+                        <tr>
+                            <td>2026-01-03 03:04:30</td>
+                            <td>Unauthorized Access Attempt</td>
+                            <td>malicious.actor@external.com</td>
+                            <td>Attempted access to /api/secrets from untrusted IP.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="readonly-test-chat" class="content-section chat-section">
+                <h2>Read-only Test Chat</h2>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="5" readonly>Welcome to the Read-only Test Chat. You can view chat logs here, but cannot send messages.
+[2026-01-03 03:00:00] AI: Initiating diagnostic session.
+[2026-01-03 03:00:15] Engineer: Check RAG health for Project Alpha.
+[2026-01-03 03:00:30] AI: RAG service for Project Alpha is healthy, 10ms latency.</textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Sending messages is disabled in read-only mode" aria-label="Chat input" disabled>
+                    <button class="btn btn-outline-secondary" type="button" disabled>Send</button>
+                </div>
+            </div>
+
+            <div id="aks-deployment-status" class="content-section">
+                <h2>AKS Deployment Status</h2>
+                <h3>Project Deployments</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Project Alpha (Prod): <span class="badge bg-success">Deployed v1.2.0</span></li>
+                    <li class="list-group-item">Project Beta (QA): <span class="badge bg-warning">Deploying v1.1.1</span></li>
+                    <li class="list-group-item">Core Services: <span class="badge bg-success">Stable</span></li>
+                </ul>
+            </div>
+
+            <div id="vectordb-health" class="content-section">
+                <h2>VectorDB Health</h2>
+                <h3>Vector Database Instances</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>DB Name</th>
+                            <th>Status</th>
+                            <th>Latency</th>
+                            <th>Index Count</th>
+                            <th>Last Check</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pinecone-Prod-01</td>
+                            <td><span class="badge bg-success">Healthy</span></td>
+                            <td>15 ms</td>
+                            <td>25</td>
+                            <td>Just now</td>
+                        </tr>
+                        <tr>
+                            <td>Weaviate-QA-01</td>
+                            <td><span class="badge bg-warning">Degraded</span></td>
+                            <td>150 ms</td>
+                            <td>10</td>
+                            <td>2 minutes ago</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="failed-ingestion-jobs" class="content-section">
+                <h2>Failed Ingestion Jobs</h2>
+                <h3>Recent Failures</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Job ID</th>
+                            <th>Document Name</th>
+                            <th>Project</th>
+                            <th>Reason</th>
+                            <th>Timestamp</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>INGEST-2026-001</td>
+                            <td>claim_report_XYZ.pdf</td>
+                            <td>Project Alpha</td>
+                            <td>Schema Mismatch</td>
+                            <td>2026-01-03 02:45:00</td>
+                            <td><button class="btn btn-sm btn-info">View Log</button></td>
+                        </tr>
+                        <tr>
+                            <td>INGEST-2026-002</td>
+                            <td>policy_document_ABC.docx</td>
+                            <td>Project Beta</td>
+                            <td>Unsupported Format</td>
+                            <td>2026-01-03 02:30:15</td>
+                            <td><button class="btn btn-sm btn-info">View Log</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="document-library" class="content-section">
+                <h2>Document Library</h2>
+                <h3>Enterprise Documents</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Category</th>
+                            <th>Version</th>
+                            <th>Expiry Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Terms & Conditions V1.0</td>
+                            <td>Legal</td>
+                            <td>1.0</td>
+                            <td>2028-12-31</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>Claims Handbook 2025</td>
+                            <td>Policy</td>
+                            <td>2.0</td>
+                            <td>2026-12-31</td>
+                            <td><button class="btn btn-sm btn-primary">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="upload-enterprise-docs" class="content-section">
+                <h2>Upload Enterprise Documents</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="enterpriseDocFile" class="form-label">Select Document(s)</label>
+                        <input type="file" class="form-control" id="enterpriseDocFile" multiple>
+                    </div>
+                    <div class="mb-3">
+                        <label for="docCategory" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="docCategory" placeholder="e.g., Legal, Policy, Training">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload Documents</button>
+                </form>
+            </div>
+
+            <div id="metadata-tagging" class="content-section">
+                <h2>Metadata Tagging</h2>
+                <h3>Documents Awaiting Tagging</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Current Tags</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>New_Regulatory_Update.pdf</td>
+                            <td><span class="badge bg-secondary">Untagged</span></td>
+                            <td><button class="btn btn-sm btn-primary">Add Tags</button></td>
+                        </tr>
+                        <tr>
+                            <td>Product_Launch_Brief.docx</td>
+                            <td><span class="badge bg-info">Marketing</span>, <span class="badge bg-info">Product</span></td>
+                            <td><button class="btn btn-sm btn-primary">Edit Tags</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="versioning-expiry" class="content-section">
+                <h2>Versioning & Expiry</h2>
+                <h3>Document Version Control</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Current Version</th>
+                            <th>Next Review Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Claims Process Guide</td>
+                            <td>3.1</td>
+                            <td>2026-06-30</td>
+                            <td><button class="btn btn-sm btn-info">View History</button></td>
+                        </tr>
+                        <tr>
+                            <td>Privacy Policy</td>
+                            <td>2.0</td>
+                            <td>2027-01-01</td>
+                            <td><button class="btn btn-sm btn-info">View History</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="claims-workspace" class="content-section">
+                <h2>Claims Workspace</h2>
+                <div class="mb-3">
+                    <label for="claimTicketSelector" class="form-label">Claim / Ticket Selector</label>
+                    <select class="form-select" id="claimTicketSelector">
+                        <option data-ticket-id="CLAIM-2023-001">CLAIM-2023-001 <span class="badge bg-info">Open</span></option>
+                        <option data-ticket-id="CLAIM-2023-002">CLAIM-2023-002 <span class="badge bg-success">In Progress</span></option>
+                        <option data-ticket-id="CLAIM-2023-003">CLAIM-2023-003 <span class="badge bg-danger">Rejected</span></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <h4>Selected Claim: <span id="selectedClaimId">CLAIM-2023-001</span></h4>
+                    <p>Status: <span class="badge bg-info">Open</span></p>
+                    <p>Description: Minor accident claim, needs document review.</p>
+                </div>
+                <div class="mb-3">
+                    <label for="uploadClaimDocs" class="form-label">Upload Claim Documents (Ticket-Scoped)</label>
+                    <input type="file" class="form-control" id="uploadClaimDocs" multiple>
+                    <button class="btn btn-sm btn-secondary mt-2">Upload</button>
+                </div>
+                <div class="mb-3">
+                    <h4>Ingestion Status</h4>
+                    <p>Document-001.pdf: <span class="badge bg-success">Ingested</span> <span class="text-muted">(2026-01-03)</span></p>
+                    <p>Photo-001.jpg: <span class="badge bg-warning">Processing</span></p>
+                </div>
+                <button class="btn btn-primary open-business-chat-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Access Business Chat">Open Business Chat</button>
+            </div>
+
+            <div id="claim-ticket-selector" class="content-section">
+                <h2>Claim / Ticket Selector</h2>
+                <p>Select specific claims or tickets.</p>
+            </div>
+
+            <div id="upload-claim-documents" class="content-section">
+                <h2>Upload Claim Documents (Ticket-Scoped)</h2>
+                <p>Upload documents specific to a claim/ticket.</p>
+            </div>
+
+            <div id="ingestion-status" class="content-section">
+                <h2>Ingestion Status</h2>
+                <p>Monitor the status of document ingestion for claims.</p>
+            </div>
+
+            <div id="business-chat" class="content-section chat-section">
+                <h2>Business Chat</h2>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="5" readonly>Welcome to the Business Chat. Interact with the AI for claim-related queries.
+AI: Hello, how can I assist with claim CLAIM-2023-001?
+You: What is the current status of CLAIM-2023-001?
+AI: CLAIM-2023-001 is currently in 'Document Review' phase.</textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Type your message here..." aria-label="Chat input">
+                    <button class="btn btn-primary" type="button">Send</button>
+                </div>
+            </div>
+
+            <div id="raise-issue" class="content-section">
+                <h2>Raise Issue / Log Ticket</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="issueType" class="form-label">Issue Type</label>
+                        <select class="form-select" id="issueType">
+                            <option>Chat Error</option>
+                            <option>Wrong Answer</option>
+                            <option>Data Missing</option>
+                            <option>System Issue</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="relatedTicketId" class="form-label">Related Ticket ID</label>
+                        <input type="text" class="form-control" id="relatedTicketId" placeholder="Optional: Enter related ticket ID">
+                    </div>
+                    <div class="mb-3">
+                        <label for="issueDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="issueDescription" rows="4" placeholder="Describe the issue in detail."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="issuePriority" class="form-label">Priority</label>
+                        <select class="form-select" id="issuePriority">
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                            <option>Critical</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Submit Issue</button>
+                </form>
+            </div>
+
+            <div id="multi-claim-dashboard" class="content-section">
+                <h2>Multi-Claim Dashboard</h2>
+                <h3>Claims Overview</h3>
+                <div class="row">
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>Total Claims</h5><p class="card-text">150</p></div></div></div>
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>Pending Approval</h5><p class="card-text">15</p></div></div></div>
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>Escalated Claims</h5><p class="card-text">3 critical</p></div></div></div>
+                </div>
+                <h3>Recent Claims</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Claim ID</th>
+                            <th>LOB</th>
+                            <th>Status</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CLAIM-2023-010</td>
+                            <td>Auto</td>
+                            <td><span class="badge bg-warning">Awaiting Docs</span></td>
+                            <td>2026-01-02</td>
+                            <td><button class="btn btn-sm btn-info">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>CLAIM-2023-009</td>
+                            <td>Life</td>
+                            <td><span class="badge bg-success">Approved</span></td>
+                            <td>2026-01-01</td>
+                            <td><button class="btn btn-sm btn-info">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="approvals" class="content-section">
+                <h2>Approvals</h2>
+                <h3>Pending Approvals for Senior Claim Adjuster / Supervisor</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Approval ID</th>
+                            <th>Type</th>
+                            <th>Submitted By</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>APP-001</td>
+                            <td>Claim Payout</td>
+                            <td>alice.adjuster@example.com</td>
+                            <td>Approve $5,000 payout for CLAIM-2023-001</td>
+                            <td>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>APP-002</td>
+                            <td>Document Re-ingestion</td>
+                            <td>ai.engineer@example.com</td>
+                            <td>Re-ingest corrupted document for CLAIM-2023-005</td>
+                            <td>
+                                <button class="btn btn-sm btn-success">Approve</button>
+                                <button class="btn btn-sm btn-danger">Reject</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="escalations" class="content-section">
+                <h2>Escalations</h2>
+                <h3>Currently Escalated Issues</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Issue ID</th>
+                            <th>Priority</th>
+                            <th>Originator</th>
+                            <th>Description</th>
+                            <th>Assigned To</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ISSUE-003</td>
+                            <td><span class="badge bg-danger">Critical</span></td>
+                            <td>customer.support@example.com</td>
+                            <td>System downtime affecting claims processing for Project Alpha.</td>
+                            <td>AI / Platform Engineer</td>
+                            <td><button class="btn btn-sm btn-info">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="issue-ticket-review" class="content-section">
+                <h2>Issue & Ticket Review</h2>
+                <table class="table" id="issue-ticket-review-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ticket ID</th>
+                            <th scope="col">Issue Type</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Priority</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Assigned To</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Mock issues/tickets will be added here by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="risk-analytics" class="content-section">
+                <h2>Risk Analytics</h2>
+                <h3>Portfolio Risk Summary</h3>
+                <div class="row">
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>Overall Risk Score</h5><p class="card-text text-warning">Medium</p></div></div></div>
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>High-Risk Policies</h5><p class="card-text">25 (3% of total)</p></div></div></div>
+                    <div class="col-md-4"><div class="card mb-3"><div class="card-body"><h5>Predicted Losses (Next Qtr)</h5><p class="card-text">$5M</p></div></div></div>
+                </div>
+                <h3>Drill-down by LOB</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Auto: High Risk (due to recent claims trends)</li>
+                    <li class="list-group-item">Life: Low Risk</li>
+                </ul>
+            </div>
+
+            <div id="loss-history" class="content-section">
+                <h2>Loss History</h2>
+                <h3>Recent Significant Losses</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Claim ID</th>
+                            <th>LOB</th>
+                            <th>Amount</th>
+                            <th>Date of Loss</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CLAIM-2023-045</td>
+                            <td>Auto</td>
+                            <td>$15,000</td>
+                            <td>2025-11-15</td>
+                            <td>Closed</td>
+                        </tr>
+                        <tr>
+                            <td>CLAIM-2023-040</td>
+                            <td>Property</td>
+                            <td>$25,000</td>
+                            <td>2025-10-20</td>
+                            <td>Closed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="policy-summaries" class="content-section">
+                <h2>Policy Summaries</h2>
+                <h3>Active Policies</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Policy ID</th>
+                            <th>Customer</th>
+                            <th>LOB</th>
+                            <th>Coverage</th>
+                            <th>Expiry Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>POL-AUTO-001</td>
+                            <td>Jane Doe</td>
+                            <td>Auto</td>
+                            <td>Full Coverage</td>
+                            <td>2026-08-31</td>
+                            <td><button class="btn btn-sm btn-info">View Details</button></td>
+                        </tr>
+                        <tr>
+                            <td>POL-LIFE-005</td>
+                            <td>John Smith</td>
+                            <td>Life</td>
+                            <td>Term Life $500k</td>
+                            <td>2045-01-01</td>
+                            <td><button class="btn btn-sm btn-info">View Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="access-history" class="content-section">
+                <h2>Access History</h2>
+                <h3>User Access Audit</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>User Email</th>
+                            <th>Action</th>
+                            <th>Resource</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026-01-03 03:08:00</td>
+                            <td>compliance.officer@example.com</td>
+                            <td>View AI Decision Logs</td>
+                            <td>AI_Decision_Log_ProjectAlpha_2026-01-03</td>
+                        </tr>
+                        <tr>
+                            <td>2026-01-03 03:07:30</td>
+                            <td>audit.officer@example.com</td>
+                            <td>Export Audit Report</td>
+                            <td>Audit_Report_Q4_2025.csv</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="approval-trails" class="content-section">
+                <h2>Approval Trails</h2>
+                <h3>Recent Approval Workflow</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Workflow ID</th>
+                            <th>Item</th>
+                            <th>Initiator</th>
+                            <th>Approver</th>
+                            <th>Status</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>WF-USER-001</td>
+                            <td>User 'new.adjuster@example.com'</td>
+                            <td>ai.engineer@example.com</td>
+                            <td>sys.admin@example.com</td>
+                            <td><span class="badge bg-success">Approved</span></td>
+                            <td>2026-01-03 03:02:00</td>
+                        </tr>
+                        <tr>
+                            <td>WF-RAG-002</td>
+                            <td>RAG Config 'project_beta_v3'</td>
+                            <td>platform.admin@example.com</td>
+                            <td>security.engineer@example.com</td>
+                            <td><span class="badge bg-warning">Pending</span></td>
+                            <td>2026-01-03 03:05:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="ai-decision-logs" class="content-section">
+                <h2>AI Decision Logs</h2>
+                <h3>Recent AI Decisions (Read-only)</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Project</th>
+                            <th>Decision Type</th>
+                            <th>Outcome</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026-01-03 03:09:00</td>
+                            <td>Project Alpha</td>
+                            <td>Claim Fraud Detection</td>
+                            <td>Low Risk</td>
+                            <td>98%</td>
+                        </tr>
+                        <tr>
+                            <td>2026-01-03 03:08:45</td>
+                            <td>Project Beta</td>
+                            <td>Policy Recommendation</td>
+                            <td>Recommended: Premium Plan</td>
+                            <td>85%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="audit-reports" class="content-section">
+                <h2>Audit Reports</h2>
+                <h3>Available Reports</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Q4 2025 Compliance Report <button class="btn btn-sm btn-primary float-end">Download</button></li>
+                    <li class="list-group-item">User Access Audit - December 2025 <button class="btn btn-sm btn-primary float-end">Download</button></li>
+                </ul>
+                <h3 class="mt-4">Generate New Report</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="reportType" class="form-label">Report Type</label>
+                        <select class="form-select" id="reportType">
+                            <option>Compliance Audit</option>
+                            <option>User Activity</option>
+                            <option>System Performance</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reportPeriod" class="form-label">Period</label>
+                        <input type="text" class="form-control" id="reportPeriod" placeholder="e.g., Q1 2026, Last 30 Days">
+                    </div>
+                    <button type="submit" class="btn btn-success">Generate Report</button>
+                </form>
+            </div>
+
+            <div id="logs-export" class="content-section">
+                <h2>Logs Export</h2>
+                <h3>Export System Logs</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="logType" class="form-label">Log Type</label>
+                        <select class="form-select" id="logType">
+                            <option>Application Logs</option>
+                            <option>Security Logs</option>
+                            <option>Access Logs</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateRange" class="form-label">Date Range</label>
+                        <input type="text" class="form-control" id="dateRange" placeholder="e.g., 2026-01-01 to 2026-01-03">
+                    </div>
+                    <button type="submit" class="btn btn-success">Export Logs</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap 5 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Mock Data
+            const mockProjects = [
+                { name: "Project Alpha", lob: "Auto" },
+                { name: "Project Beta", lob: "Property" },
+                { name: "Default Project", lob: "Life" }
+            ];
+
+            const mockUsersForApproval = [
+                { id: 1, email: "new.adjuster@example.com", role: "Claim Adjuster", project: "Project Alpha", status: "Pending" },
+                { id: 2, email: "new.underwriter@example.com", role: "Underwriter", project: "Project Beta", status: "Pending" }
+            ];
+
+            const mockIssues = [
+                { id: "ISSUE-001", type: "Chat Error", description: "AI provided incorrect claim status for ticket #CLAIM-2023-005", priority: "High", status: "Open", assignedTo: "", linkedProject: "Project Alpha", chatSession: "SESS-123" },
+                { id: "ISSUE-002", type: "Data Missing", description: "Unable to find policy documents for customer ID 12345", priority: "Medium", status: "Open", assignedTo: "", linkedProject: "Project Beta", chatSession: "SESS-456" }
+            ];
+
+            // Function to update the UI based on the selected role
+            function updateUIForRole(role) {
+                // Update current role display
+                $("#currentRole").text(role);
+                $("#currentRolePermissions").text(role);
+
+                // Hide all sidebar items and content sections initially
+                $(".sidebar-item").hide();
+                $(".content-section").hide();
+                $("#test-chat-warning").hide();
+                $("#readonly-test-chat-warning").hide();
+
+                // Show sidebar items relevant to the selected role
+                // Normalize role name for class matching (e.g., 'AI / Platform Engineer' -> 'AI-Platform-Engineer')
+                let normalizedRole = role.replace(/[^a-zA-Z0-9]/g, "-"); // Replace non-alphanumeric with hyphen
+                normalizedRole = normalizedRole.replace(/--+/g, "-"); // Replace multiple hyphens with single
+                normalizedRole = normalizedRole.replace(/^-|-$/g, ""); // Trim hyphens from start/end
+
+                $(`.${normalizedRole}`).show();
+
+                // Handle Chat Access
+                $(".chat-section").hide(); // Hide all chat sections by default
+                if (["Claim Adjuster", "Senior Claim Adjuster / Supervisor"].includes(role)) {
+                    $("#business-chat").show();
+                    $(".open-business-chat-btn").show(); // Show button in Claims Workspace
+                } else if (["AI / Platform Engineer", "System Administrator", "Platform Admin"].includes(role)) {
+                    $("#test-chat").show();
+                    $("#test-chat-warning").show();
+                    $(".open-business-chat-btn").hide();
+                } else if (role === "Security Engineer") {
+                    $("#readonly-test-chat").show();
+                    $("#readonly-test-chat-warning").show();
+                    $(".open-business-chat-btn").hide();
+                } else {
+                    $(".open-business-chat-btn").hide();
+                }
+
+                // Set a default view for each role, or show the first available link
+                let defaultViewId = null;
+                // Prioritize active link if it exists for the role
+                if ($(`.${normalizedRole} .nav-link.active`).length > 0) {
+                    defaultViewId = $(`.${normalizedRole} .nav-link.active`).attr("href");
+                } else if ($(`.${normalizedRole} .nav-link`).first().length > 0) {
+                    // Otherwise, pick the first available link for the role
+                    defaultViewId = $(`.${normalizedRole} .nav-link`).first().attr("href");
+                }
+
+                if (defaultViewId) {
+                    $(defaultViewId).show();
+                    // Mark the corresponding sidebar link as active
+                    $(".nav-link").removeClass("active");
+                    $(`a[href="${defaultViewId}"]`).addClass("active");
+
+                    // Specific functions to load data when a section is opened as default
+                    if (defaultViewId === "#access-approval-queue") {
+                        loadApprovalRequests();
+                    } else if (defaultViewId === "#incoming-tickets" || defaultViewId === "#issue-ticket-review") {
+                        loadIssuesForReview();
+                    } else if (defaultViewId === "#claims-workspace") {
+                        // Simulate loading claim details for the first claim
+                        $("#selectedClaimId").text($("#claimTicketSelector option:first").data("ticket-id"));
+                    }
+                } else {
+                    // If no specific view, display a welcome message or clear content
+                    $("#main-content").append("<div class=\"content-section current-default-view\"><h3>Welcome! Select an option from the sidebar.</h3></div>");
+                    $(".current-default-view").show();
+                }
+            }
+
+            // Project Selector Dropdown Change Handler
+            $(".project-selector").on("click", function(e) {
+                e.preventDefault();
+                const projectName = $(this).data("project-name");
+                const projectLOB = $(this).data("project-lob");
+                $("#currentProjectName").text(projectName);
+                $("#currentProjectLOB").text(`LOB: ${projectLOB}`);
+            });
+
+            // Role Selector Dropdown Change Handler
+            $(".role-selector").on("click", function(e) {
+                e.preventDefault();
+                const selectedRole = $(this).data("role");
+                updateUIForRole(selectedRole);
+            });
+
+            // Sidebar Navigation Click Handler
+            $("#left-sidebar").on("click", ".nav-link", function(e) {
+                e.preventDefault();
+                $(".nav-link").removeClass("active");
+                $(this).addClass("active");
+                $(".content-section").hide(); // Hide all content sections
+                $(".current-default-view").remove(); // Remove any default welcome message
+                const targetId = $(this).attr("href");
+                $(targetId).show(); // Show the targeted content section
+
+                // Specific functions to load data when a section is opened
+                if (targetId === "#access-approval-queue") {
+                    loadApprovalRequests();
+                } else if (targetId === "#incoming-tickets" || targetId === "#issue-ticket-review") {
+                    loadIssuesForReview();
+                } else if (targetId === "#claims-workspace") {
+                    // Simulate loading claim details for the first claim or selected one
+                    $("#selectedClaimId").text($("#claimTicketSelector option:selected").data("ticket-id") || $("#claimTicketSelector option:first").data("ticket-id"));
+                }
+            });
+
+            // Simulate User Management (Maker) - Submit for Approval
+            $("#submitForApproval").on("click", function() {
+                const userEmail = $("#userEmail").val();
+                const userRole = $("#userRole").val();
+                const projectScope = $("#projectScope").val();
+
+                if (userEmail && userRole && projectScope) {
+                    const newRequest = {
+                        id: mockUsersForApproval.length + 1,
+                        email: userEmail,
+                        role: userRole,
+                        project: projectScope,
+                        status: "Pending"
+                    };
+                    mockUsersForApproval.push(newRequest);
+                    $("#userApprovalStatus").text("Pending").removeClass("bg-success bg-danger").addClass("bg-warning");
+                    alert("User request submitted for approval!");
+                    // Clear form for next entry
+                    $("#userEmail").val("");
+                    $("#userRole").val("Claim Adjuster");
+                    $("#projectScope").val("");
+                } else {
+                    alert("Please fill all fields for user management.");
+                }
+            });
+
+            // Function to load mock approval requests into the table
+            function loadApprovalRequests() {
+                const $tableBody = $("#approval-requests-table tbody");
+                $tableBody.empty(); // Clear previous entries
+
+                mockUsersForApproval.forEach(request => {
+                    const row = `
+                        <tr>
+                            <th scope="row">${request.id}</th>
+                            <td>${request.email}</td>
+                            <td>${request.role}</td>
+                            <td>${request.project}</td>
+                            <td><span class="badge bg-warning">${request.status}</span></td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm me-2 approve-request" data-id="${request.id}">Approve</button>
+                                <button type="button" class="btn btn-danger btn-sm reject-request" data-id="${request.id}">Reject</button>
+                            </td>
+                        </tr>
+                    `;
+                    $tableBody.append(row);
+                });
+            }
+
+            // Handle Approve/Reject for Access Approval Queue (Checker)
+            $("#approval-requests-table").on("click", ".approve-request", function() {
+                const requestId = $(this).data("id");
+                const request = mockUsersForApproval.find(r => r.id === requestId);
+                if (request) {
+                    request.status = "Approved";
+                    alert(`Request for ${request.email} approved.`);
+                    loadApprovalRequests(); // Reload table to reflect change
+                }
+            });
+
+            $("#approval-requests-table").on("click", ".reject-request", function() {
+                const requestId = $(this).data("id");
+                const request = mockUsersForApproval.find(r => r.id === requestId);
+                if (request) {
+                    const reason = prompt("Reason for rejection (mandatory):");
+                    if (reason) {
+                        request.status = `Rejected (${reason})`;
+                        alert(`Request for ${request.email} rejected with reason: ${reason}`);
+                        loadApprovalRequests(); // Reload table to reflect change
+                    } else {
+                        alert("Reason for rejection is mandatory.");
+                    }
+                }
+            });
+
+            // Simulate Issue / Ticket Logging (Submit Issue)
+            $("#raise-issue form").on("submit", function(e) {
+                e.preventDefault();
+                const issueType = $("#issueType").val();
+                const relatedTicketId = $("#relatedTicketId").val();
+                const description = $("#issueDescription").val();
+                const priority = $("#issuePriority").val();
+
+                if (issueType && description && priority) {
+                    const newIssue = {
+                        id: `ISSUE-${String(mockIssues.length + 1).padStart(3, "0")}`,
+                        type: issueType,
+                        description: description,
+                        priority: priority,
+                        status: "Open",
+                        assignedTo: "",
+                        linkedProject: $("#currentProjectName").text(), // Link to current selected project
+                        chatSession: "N/A" // Placeholder
+                    };
+                    mockIssues.push(newIssue);
+                    alert("Issue submitted successfully! ID: " + newIssue.id);
+                    // Clear form
+                    $("#issueType").val("Chat Error");
+                    $("#relatedTicketId").val("");
+                    $("#issueDescription").val("");
+                    $("#issuePriority").val("Low");
+                } else {
+                    alert("Please fill in all mandatory fields (Issue Type, Description, Priority).");
+                }
+            });
+
+            // Function to load mock issues into the 'Incoming Tickets' and 'Issue & Ticket Review' tables
+            function loadIssuesForReview() {
+                const $incomingTicketsTable = $("#incoming-tickets #ticket-list");
+                $incomingTicketsTable.empty();
+
+                const $issueTicketReviewTableBody = $("#issue-ticket-review-table tbody");
+                $issueTicketReviewTableBody.empty();
+
+                if (mockIssues.length === 0) {
+                    $incomingTicketsTable.append("<p>No incoming tickets.</p>");
+                    $issueTicketReviewTableBody.append("<tr><td colspan=\"7\">No issues to review.</td></tr>");
+                    return;
+                }
+
+                mockIssues.forEach(issue => {
+                    // For AI / Platform Engineer - Incoming Tickets
+                    $incomingTicketsTable.append(`
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title">Issue ID: ${issue.id} <span class="badge bg-info">${issue.type}</span></h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Priority: <span class="badge bg-${issue.priority === "High" || issue.priority === "Critical" ? "danger" : "warning"}">${issue.priority}</span> | Status: <span class="badge bg-secondary">${issue.status}</span></h6>
+                                <p class="card-text">${issue.description}</p>
+                                <button class="btn btn-sm btn-primary assign-issue" data-id="${issue.id}">Assign to Me</button>
+                                <button class="btn btn-sm btn-success resolve-issue" data-id="${issue.id}" ${issue.status === "Resolved" ? "disabled" : ""}>Resolve</button>
+                            </div>
+                        </div>
+                    `);
+
+                    // For Senior Claim Adjuster / Supervisor - Issue & Ticket Review
+                    const reviewRow = `
+                        <tr>
+                            <td>${issue.id}</td>
+                            <td>${issue.type}</td>
+                            <td>${issue.description}</td>
+                            <td><span class="badge bg-${issue.priority === "High" || issue.priority === "Critical" ? "danger" : "warning"}">${issue.priority}</span></td>
+                            <td><span class="badge bg-secondary">${issue.status}</span></td>
+                            <td>${issue.assignedTo || "Unassigned"}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm me-2 resolve-issue" data-id="${issue.id}" ${issue.status === "Resolved" ? "disabled" : ""}>Resolve</button>
+                                <button type="button" class="btn btn-info btn-sm view-issue-details" data-id="${issue.id}">View</button>
+                            </td>
+                        </tr>
+                    `;
+                    $issueTicketReviewTableBody.append(reviewRow);
+                });
+            }
+
+            // Handle assigning and resolving issues for AI Engineer / Supervisor
+            $(document).on("click", ".assign-issue", function() {
+                const issueId = $(this).data("id");
+                const issue = mockIssues.find(i => i.id === issueId);
+                if (issue) {
+                    issue.assignedTo = $("#currentRole").text(); // Assign to the current user's role
+                    issue.status = "In Progress";
+                    alert(`Issue ${issueId} assigned to ${issue.assignedTo}.`);
+                    loadIssuesForReview();
+                }
+            });
+
+            $(document).on("click", ".resolve-issue", function() {
+                const issueId = $(this).data("id");
+                const issue = mockIssues.find(i => i.id === issueId);
+                if (issue && issue.status !== "Resolved") {
+                    const resolutionNotes = prompt("Enter resolution notes (mandatory):");
+                    if (resolutionNotes) {
+                        issue.status = `Resolved`;
+                        alert(`Issue ${issueId} resolved. Notes: ${resolutionNotes}`);
+                        loadIssuesForReview();
+                    } else {
+                        alert("Resolution notes are mandatory.");
+                    }
+                }
+            });
+
+            // Initial UI setup on page load (default to Claim Adjuster)
+            updateUIForRole("Claim Adjuster");
+        });
+    </script>
+</body>
+</html>
